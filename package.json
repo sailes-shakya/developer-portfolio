@@ -1,6 +1,6 @@
 {
   "name": "developer-portfolio",
-  "description": "Portfolio of Abu Said",
+  "description": "Portfolio of Sailesh Shakya",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "@emailjs/browser": "^4.3.1",
     "@next/third-parties": "^14.1.3",
     "axios": "^1.6.8",
+    "firebase": "^10.13.2",
     "lottie-react": "^2.4.0",
     "next": "^14.1.3",
     "react": "latest",
@@ -20,7 +21,9 @@
     "react-fast-marquee": "^1.6.2",
     "react-google-recaptcha": "^3.1.0",
     "react-icons": "^4.11.0",
-    "react-toastify": "^10.0.4"
+    "react-toastify": "^10.0.4",
+    "rss-parser": "^3.13.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "autoprefixer": "latest",
