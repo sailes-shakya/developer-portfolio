@@ -7,7 +7,6 @@ export const personalData = {
   phone: '+977 9841379279',
   address: 'kathmandu, Nepal',
   github: 'https://github.com/sailes-shakya',
-  facebook: 'https://www.facebook.com/abusaid.riyaz/',
   linkedIn: 'https://www.linkedin.com/in/dev-sailesh-shakya/',
   twitter: 'https://twitter.com/said7388',
   devUsername: "sailesshakya",
