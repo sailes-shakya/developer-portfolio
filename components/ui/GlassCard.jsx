@@ -6,10 +6,8 @@ export default function GlassCard({
   solid = false,
   ...props
 }) {
-  const base = solid ? "glass-panel-solid" : "glass-panel";
-  const hoverClass = hover
-    ? "transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift"
-    : "";
+  const base = solid ? "brutal-panel-solid" : "brutal-panel";
+  const hoverClass = hover ? "brutal-panel-interactive" : "";
 
   return (
     <Component className={`${base} ${hoverClass} ${className}`} {...props}>

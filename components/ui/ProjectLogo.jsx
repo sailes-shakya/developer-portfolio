@@ -8,7 +8,7 @@ export default function ProjectLogo({
 }) {
   return (
     <div
-      className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border/10 bg-[rgb(var(--color-surface)/0.6)] p-3 ${className}`}
+      className={`relative flex shrink-0 items-center justify-center overflow-hidden border-brutal border-border bg-surface p-3 shadow-brutal-sm ${className}`}
     >
       {darkSrc ? (
         <>

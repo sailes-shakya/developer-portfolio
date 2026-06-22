@@ -5,8 +5,7 @@ export default function AmbientBackground() {
       aria-hidden="true"
     >
       <div className="ambient-grid" />
-      <div className="ambient-spotlight" />
-      <div className="ambient-fade" />
+      <div className="ambient-grain" />
     </div>
   );
 }

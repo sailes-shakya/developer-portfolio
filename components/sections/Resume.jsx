@@ -33,26 +33,24 @@ export default function Resume() {
                 </Button>
               </div>
             </div>
-            <div className="glass-panel-solid rounded-2xl p-6">
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-accent">
-                Quick facts
-              </h3>
+            <div className="brutal-panel-solid p-6">
+              <h3 className="brutal-label !mb-4">Quick facts</h3>
               <dl className="mt-4 space-y-3 text-sm">
-                <div className="flex justify-between gap-4">
-                  <dt className="text-muted">Location</dt>
-                  <dd className="font-medium text-foreground">{siteConfig.location}</dd>
+                <div className="flex justify-between gap-4 border-b-2 border-border/20 pb-2">
+                  <dt className="font-mono text-xs font-bold uppercase text-muted">Location</dt>
+                  <dd className="font-bold text-foreground">{siteConfig.location}</dd>
+                </div>
+                <div className="flex justify-between gap-4 border-b-2 border-border/20 pb-2">
+                  <dt className="font-mono text-xs font-bold uppercase text-muted">Phone</dt>
+                  <dd className="font-bold text-foreground">{siteConfig.phone}</dd>
+                </div>
+                <div className="flex justify-between gap-4 border-b-2 border-border/20 pb-2">
+                  <dt className="font-mono text-xs font-bold uppercase text-muted">Focus</dt>
+                  <dd className="font-bold text-foreground">Flutter · React Native</dd>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <dt className="text-muted">Phone</dt>
-                  <dd className="font-medium text-foreground">{siteConfig.phone}</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-muted">Focus</dt>
-                  <dd className="font-medium text-foreground">Flutter · React Native</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-muted">Status</dt>
-                  <dd className="font-medium text-accent">Open to opportunities</dd>
+                  <dt className="font-mono text-xs font-bold uppercase text-muted">Status</dt>
+                  <dd className="font-bold text-accent">Open to opportunities</dd>
                 </div>
               </dl>
             </div>

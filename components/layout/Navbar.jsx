@@ -29,26 +29,19 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-200 ${
         scrolled ? "py-2" : "py-4"
       }`}
     >
-      <nav
-        className="section-container !py-0"
-        aria-label="Primary"
-      >
-        <div
-          className={`glass-panel-solid flex items-center justify-between gap-4 px-4 py-3 sm:px-6 ${
-            scrolled ? "shadow-glass" : ""
-          }`}
-        >
+      <nav className="section-container !py-0" aria-label="Primary">
+        <div className="brutal-panel-solid flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link
             href="#hero"
-            className="text-sm font-bold tracking-tight text-foreground sm:text-base"
+            className="font-mono text-sm font-bold uppercase tracking-tight text-foreground sm:text-base"
             onClick={closeMenu}
           >
             {siteConfig.name.split(" ")[0]}
-            <span className="text-accent">.</span>
+            <span className="text-accent">_</span>
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex" role="list">
@@ -56,7 +49,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="rounded-full px-3 py-2 text-sm font-medium text-foreground-secondary transition-colors hover:text-accent"
+                  className="px-3 py-2 font-mono text-xs font-bold uppercase tracking-wide text-foreground-secondary transition-colors hover:text-accent"
                 >
                   {link.label}
                 </Link>
@@ -75,7 +68,7 @@ export default function Navbar() {
             </Button>
             <button
               type="button"
-              className="glass-panel flex h-10 w-10 items-center justify-center lg:hidden"
+              className="brutal-btn brutal-btn-secondary flex h-10 w-10 items-center justify-center !p-0 lg:hidden"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -94,7 +87,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="glass-panel-solid fixed inset-x-4 top-[4.5rem] z-40 max-h-[calc(100vh-6rem)] overflow-y-auto p-4 lg:hidden"
+          className="brutal-panel-solid fixed inset-x-4 top-[4.5rem] z-40 max-h-[calc(100vh-6rem)] overflow-y-auto p-4 lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"
@@ -105,16 +98,21 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={closeMenu}
-                  className="block rounded-xl px-4 py-3 text-base font-medium text-foreground-secondary transition-colors hover:bg-accent/10 hover:text-accent"
+                  className="block border-2 border-transparent px-4 py-3 font-mono text-sm font-bold uppercase tracking-wide text-foreground-secondary transition-colors hover:border-border hover:bg-surface hover:text-accent"
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex items-center justify-between border-t border-border/10 pt-4">
+          <div className="mt-4 flex items-center justify-between border-t-[3px] border-border pt-4">
             <ThemeToggle />
-            <Button href="#resume" variant="primary" className="!px-4 !py-2 text-xs" onClick={closeMenu}>
+            <Button
+              href="#resume"
+              variant="primary"
+              className="!px-4 !py-2 text-xs"
+              onClick={closeMenu}
+            >
               Get in touch
             </Button>
           </div>

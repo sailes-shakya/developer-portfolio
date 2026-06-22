@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import AmbientBackground from "@/components/ui/AmbientBackground";
 import Navbar from "@/components/layout/Navbar";
@@ -6,11 +6,18 @@ import Footer from "@/components/layout/Footer";
 import { buildRootMetadata, buildStructuredData } from "@/lib/seo";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["500", "700"],
 });
 
 export const metadata = buildRootMetadata();
@@ -31,7 +38,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={`${jakarta.variable} font-sans`}>
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans`}>
         <ThemeProvider>
           <a href="#main-content" className="skip-link">
             Skip to main content

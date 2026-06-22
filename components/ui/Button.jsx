@@ -3,11 +3,10 @@
 import Link from "next/link";
 
 const variants = {
-  primary:
-    "bg-accent text-[rgb(var(--color-bg))] hover:brightness-105",
-  secondary:
-    "glass-panel text-foreground hover:bg-[rgb(var(--color-glass)/0.7)]",
-  ghost: "text-foreground-secondary hover:text-accent underline-offset-4 hover:underline",
+  primary: "brutal-btn brutal-btn-primary",
+  secondary: "brutal-btn brutal-btn-secondary",
+  ghost:
+    "font-bold uppercase tracking-wide text-foreground-secondary underline decoration-[2px] underline-offset-4 hover:text-accent",
 };
 
 function isExternalHref(href) {
@@ -26,7 +25,7 @@ export default function Button({
   external = false,
   ...props
 }) {
-  const classes = `inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-offset-4 ${variants[variant]} ${className}`;
+  const classes = `px-6 py-3 text-sm focus-visible:outline-offset-4 ${variants[variant]} ${className}`;
 
   if (href) {
     if (href.startsWith("mailto:")) {

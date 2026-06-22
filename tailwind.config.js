@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {
         accent: "rgb(var(--color-accent) / <alpha-value>)",
@@ -20,20 +21,26 @@ module.exports = {
         "foreground-secondary": "rgb(var(--color-text-secondary) / <alpha-value>)",
       },
       borderRadius: {
-        glass: "var(--radius-glass)",
+        glass: "var(--radius-brutal)",
+        brutal: "var(--radius-brutal)",
       },
       boxShadow: {
-        glass: "var(--shadow-glass)",
-        glow: "var(--shadow-glow)",
-        lift: "var(--shadow-lift)",
+        glass: "var(--shadow-brutal)",
+        brutal: "var(--shadow-brutal)",
+        "brutal-sm": "var(--shadow-brutal-sm)",
+        "brutal-lg": "var(--shadow-brutal-lg)",
+        lift: "var(--shadow-brutal-lg)",
+      },
+      borderWidth: {
+        brutal: "3px",
       },
       animation: {
-        "fade-up": "fadeUp 0.6s ease-out forwards",
+        "fade-up": "fadeUp 0.4s ease-out forwards",
       },
       keyframes: {
         fadeUp: {
-          from: { opacity: "0", transform: "translateY(16px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+          from: { opacity: "0", transform: "translate(4px, 4px)" },
+          to: { opacity: "1", transform: "translate(0, 0)" },
         },
       },
     },

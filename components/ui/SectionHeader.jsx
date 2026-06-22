@@ -6,11 +6,7 @@ export default function SectionHeader({
 }) {
   return (
     <header className="mb-12 max-w-2xl">
-      {label && (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
-          {label}
-        </p>
-      )}
+      {label && <p className="brutal-label">{label}</p>}
       <h2
         id={headingId}
         className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
@@ -18,7 +14,7 @@ export default function SectionHeader({
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-lg text-foreground-secondary leading-relaxed">
+        <p className="mt-4 border-l-[3px] border-accent pl-4 text-lg text-foreground-secondary leading-relaxed">
           {description}
         </p>
       )}

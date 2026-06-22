@@ -30,7 +30,7 @@ export default function Projects() {
           <Reveal key={project.id} delay={i * 80}>
             <GlassCard className="group overflow-hidden p-0" as="article">
               <div className="grid sm:grid-cols-[140px_1fr]">
-                <div className="flex items-center justify-center bg-surface-elevated/50 p-6 sm:p-4">
+                <div className="flex items-center justify-center border-b-[3px] border-border bg-surface p-6 sm:border-b-0 sm:border-r-[3px] sm:p-4">
                   <ProjectLogo
                     src={project.logo || project.image}
                     darkSrc={project.logoDark}
@@ -39,7 +39,7 @@ export default function Projects() {
                   />
                 </div>
                 <div className="p-6 sm:pl-2">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+                  <p className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
                     {project.role}
                   </p>
                   <h3 className="mt-2 text-xl font-bold text-foreground">
@@ -51,7 +51,7 @@ export default function Projects() {
                   <p className="mt-3 text-sm text-muted leading-relaxed">
                     {project.description}
                   </p>
-                  <p className="mt-3 text-xs font-medium text-accent">
+                  <p className="mt-3 font-mono text-xs font-bold uppercase text-foreground">
                     → {project.outcome}
                   </p>
                   <ul className="mt-4 flex flex-wrap gap-2" role="list">
@@ -66,7 +66,7 @@ export default function Projects() {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-4 inline-flex text-xs font-semibold text-accent underline-offset-4 hover:underline"
+                      className="mt-4 inline-flex font-mono text-xs font-bold uppercase tracking-wide text-accent underline decoration-[2px] underline-offset-4 hover:text-foreground"
                     >
                       View on Google Play →
                     </a>

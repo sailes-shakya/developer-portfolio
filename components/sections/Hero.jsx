@@ -17,11 +17,10 @@ export default function Hero() {
           <Badge className="mb-6">Senior Software Engineer</Badge>
           <h2
             id="hero-heading"
-            className="text-hero font-bold leading-[1.1] tracking-tight text-foreground"
+            className="text-hero font-bold leading-[1.05] tracking-tight text-foreground"
           >
             Mobile products that feel{" "}
-            <span className="text-gradient font-extrabold">native</span> in your
-            hand.
+            <span className="text-gradient">native</span> in your hand.
           </h2>
           <p className="mt-6 max-w-xl text-lg text-foreground-secondary">
             {siteConfig.tagline} Explore case studies, skills, and writing — or

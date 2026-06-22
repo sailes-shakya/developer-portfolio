@@ -21,12 +21,12 @@ export default function Experience() {
         />
       </Reveal>
 
-      <ol className="relative space-y-6 border-l border-border/15 pl-8">
+      <ol className="relative space-y-6 border-l-[3px] border-border pl-8">
         {experiences.map((exp, i) => (
           <Reveal key={exp.id} delay={i * 70}>
             <li className="relative">
               <span
-                className="absolute -left-[2.125rem] top-6 h-3 w-3 rounded-full border-2 border-accent bg-[rgb(var(--color-bg))]"
+                className="absolute -left-[2.375rem] top-6 h-4 w-4 border-[3px] border-border bg-accent shadow-brutal-sm"
                 aria-hidden="true"
               />
               <GlassCard className="p-6" as="article">
@@ -51,7 +51,7 @@ export default function Experience() {
                   </div>
                   <time
                     dateTime={exp.period}
-                    className="text-xs font-medium text-muted"
+                    className="brutal-badge !text-[10px]"
                   >
                     {exp.period}
                   </time>
