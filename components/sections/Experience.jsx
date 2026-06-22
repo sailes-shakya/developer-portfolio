@@ -4,6 +4,7 @@ import GlassCard from "@/components/ui/GlassCard";
 import Badge from "@/components/ui/Badge";
 import Reveal from "@/components/ui/Reveal";
 import ProjectLogo from "@/components/ui/ProjectLogo";
+import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
 
 export default function Experience() {
   return (
@@ -12,16 +13,14 @@ export default function Experience() {
       className="section-container"
       aria-labelledby="experience-heading"
     >
-      <Reveal>
-        <SectionHeader
-          label="Experience"
-          title="Where I've led and shipped"
-          description="A timeline of roles — from native Android to tech lead — so you can see depth and progression."
-          headingId="experience-heading"
-        />
-      </Reveal>
+      <SectionHeader
+        label="Experience"
+        title="Where I've led and shipped"
+        description="A timeline of roles — from native Android to tech lead — so you can see depth and progression."
+        headingId="experience-heading"
+      />
 
-      <ol className="relative space-y-6 border-l-[3px] border-border pl-8">
+      <ExperienceTimeline>
         {experiences.map((exp, i) => (
           <Reveal key={exp.id} delay={i * 70}>
             <li className="relative">
@@ -80,7 +79,7 @@ export default function Experience() {
             </li>
           </Reveal>
         ))}
-      </ol>
+      </ExperienceTimeline>
     </section>
   );
 }

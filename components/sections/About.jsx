@@ -10,14 +10,12 @@ export default function About() {
       className="section-container"
       aria-labelledby="about-heading"
     >
-      <Reveal>
-        <SectionHeader
-          label="About"
-          title={aboutContent.headline}
-          description="Learn who I am, how I work, and what you can expect when we collaborate."
-          headingId="about-heading"
-        />
-      </Reveal>
+      <SectionHeader
+        label="About"
+        title={aboutContent.headline}
+        description="Learn who I am, how I work, and what you can expect when we collaborate."
+        headingId="about-heading"
+      />
 
       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         <Reveal delay={80}>

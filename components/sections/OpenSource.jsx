@@ -13,14 +13,12 @@ export default function OpenSource() {
       className="section-container"
       aria-labelledby="opensource-heading"
     >
-      <Reveal>
-        <SectionHeader
-          label="Open Source"
-          title="Code in the open"
-          description="Repositories and snippets I share publicly — fork, reference, or reach out if you want to collaborate."
-          headingId="opensource-heading"
-        />
-      </Reveal>
+      <SectionHeader
+        label="Open Source"
+        title="Code in the open"
+        description="Repositories and snippets I share publicly — fork, reference, or reach out if you want to collaborate."
+        headingId="opensource-heading"
+      />
 
       <div className="grid gap-6 md:grid-cols-2">
         {openSource.map((repo, i) => (

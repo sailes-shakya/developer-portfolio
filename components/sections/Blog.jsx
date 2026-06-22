@@ -15,14 +15,12 @@ export default function Blog({ posts = [] }) {
       className="section-container"
       aria-labelledby="blog-heading"
     >
-      <Reveal>
-        <SectionHeader
-          label="Blog"
-          title="Writing & technical notes"
-          description="Articles on mobile development, tooling, and lessons from production — read the latest or browse all posts."
-          headingId="blog-heading"
-        />
-      </Reveal>
+      <SectionHeader
+        label="Blog"
+        title="Writing & technical notes"
+        description="Articles on mobile development, tooling, and lessons from production — read the latest or browse all posts."
+        headingId="blog-heading"
+      />
 
       {visible.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-3">

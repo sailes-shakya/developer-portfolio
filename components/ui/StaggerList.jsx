@@ -3,34 +3,44 @@
 import { useEffect, useRef } from "react";
 import { initGsap } from "@/lib/gsap-client";
 
-export default function Reveal({ children, className = "", delay = 0 }) {
+export default function StaggerList({
+  children,
+  className = "",
+  itemSelector = "[data-stagger-item]",
+  stagger = 0.06,
+  delay = 0,
+}) {
   const ref = useRef(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const root = ref.current;
+    if (!root) return;
 
-    const prefersReducedMotion = window.matchMedia(
+    const items = root.querySelectorAll(itemSelector);
+    if (!items.length) return;
+
+    const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     const { gsap } = initGsap();
 
-    if (prefersReducedMotion) {
-      gsap.set(el, { opacity: 1, y: 0 });
+    if (reduced) {
+      gsap.set(items, { opacity: 1, y: 0 });
       return;
     }
 
-    gsap.set(el, { opacity: 0, y: 28 });
+    gsap.set(items, { opacity: 0, y: 16 });
 
-    const tween = gsap.to(el, {
+    const tween = gsap.to(items, {
       opacity: 1,
       y: 0,
-      duration: 0.65,
+      duration: 0.45,
+      stagger,
       delay: delay / 1000,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: el,
+        trigger: root,
         start: "top 88%",
         once: true,
       },
@@ -40,7 +50,7 @@ export default function Reveal({ children, className = "", delay = 0 }) {
       tween.scrollTrigger?.kill();
       tween.kill();
     };
-  }, [delay]);
+  }, [itemSelector, stagger, delay]);
 
   return (
     <div ref={ref} className={className}>

@@ -1,5 +1,6 @@
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import AmbientBackground from "@/components/ui/AmbientBackground";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -40,13 +41,15 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans`}>
         <ThemeProvider>
-          <a href="#main-content" className="skip-link">
-            Skip to main content
-          </a>
-          <AmbientBackground />
-          <Navbar />
-          <main id="main-content">{children}</main>
-          <Footer />
+          <SmoothScrollProvider>
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <AmbientBackground />
+            <Navbar />
+            <main id="main-content">{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

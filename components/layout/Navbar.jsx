@@ -1,15 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { navLinks, siteConfig } from "@/lib/data/site";
+import { useScroll } from "@/lib/scroll-context";
+import { initGsap } from "@/lib/gsap-client";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import Button from "@/components/ui/Button";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef(null);
+  const hiddenRef = useRef(false);
+  const { lenis, ready } = useScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -17,6 +22,47 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!open || !headerRef.current) return;
+
+    const { gsap } = initGsap();
+    hiddenRef.current = false;
+    gsap.to(headerRef.current, { y: "0%", duration: 0.25, ease: "power2.out" });
+  }, [open]);
+
+  useEffect(() => {
+    if (!ready || !lenis || !headerRef.current) return;
+
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduced) return;
+
+    const { gsap } = initGsap();
+    const header = headerRef.current;
+
+    const onLenisScroll = ({ scroll, direction }) => {
+      setScrolled(scroll > 24);
+
+      if (open) return;
+
+      if (direction === 1 && scroll > 120 && !hiddenRef.current) {
+        hiddenRef.current = true;
+        gsap.to(header, { y: "-110%", duration: 0.35, ease: "power2.inOut" });
+      } else if (direction === -1 && hiddenRef.current) {
+        hiddenRef.current = false;
+        gsap.to(header, { y: "0%", duration: 0.35, ease: "power2.out" });
+      }
+    };
+
+    lenis.on("scroll", onLenisScroll);
+
+    return () => {
+      lenis.off("scroll", onLenisScroll);
+      gsap.set(header, { clearProps: "y" });
+    };
+  }, [ready, lenis, open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -29,7 +75,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-200 ${
+      ref={headerRef}
+      className={`fixed inset-x-0 top-0 z-50 will-change-transform transition-[padding] duration-200 ${
         scrolled ? "py-2" : "py-4"
       }`}
     >
@@ -87,6 +134,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
+          data-lenis-prevent
           className="brutal-panel-solid fixed inset-x-4 top-[4.5rem] z-40 max-h-[calc(100vh-6rem)] overflow-y-auto p-4 lg:hidden"
           role="dialog"
           aria-modal="true"

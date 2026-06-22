@@ -10,14 +10,12 @@ export default function Testimonials() {
       className="section-container"
       aria-labelledby="testimonials-heading"
     >
-      <Reveal>
-        <SectionHeader
-          label="Testimonials"
-          title="What collaborators say"
-          description="Feedback from teams I've worked with — on delivery, leadership, and communication."
-          headingId="testimonials-heading"
-        />
-      </Reveal>
+      <SectionHeader
+        label="Testimonials"
+        title="What collaborators say"
+        description="Feedback from teams I've worked with — on delivery, leadership, and communication."
+        headingId="testimonials-heading"
+      />
 
       <div className="grid gap-6 md:grid-cols-3">
         {testimonials.map((t, i) => (

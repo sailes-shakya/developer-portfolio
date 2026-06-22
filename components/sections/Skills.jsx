@@ -2,6 +2,7 @@ import { skillGroups } from "@/lib/data/site";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlassCard from "@/components/ui/GlassCard";
 import Reveal from "@/components/ui/Reveal";
+import StaggerList from "@/components/ui/StaggerList";
 
 export default function Skills() {
   return (
@@ -10,14 +11,12 @@ export default function Skills() {
       className="section-container"
       aria-labelledby="skills-heading"
     >
-      <Reveal>
-        <SectionHeader
-          label="Skills"
-          title="Tech stack I ship with"
-          description="Tools and frameworks I use daily to build, release, and maintain mobile and web products."
-          headingId="skills-heading"
-        />
-      </Reveal>
+      <SectionHeader
+        label="Skills"
+        title="Tech stack I ship with"
+        description="Tools and frameworks I use daily to build, release, and maintain mobile and web products."
+        headingId="skills-heading"
+      />
 
       <div className="grid gap-6 md:grid-cols-3">
         {skillGroups.map((group, i) => (
@@ -26,20 +25,28 @@ export default function Skills() {
               <h3 className="text-sm font-semibold uppercase tracking-widest text-accent">
                 {group.category}
               </h3>
-              <ul className="mt-5 space-y-3" role="list">
-                {group.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="flex items-center gap-3 text-foreground-secondary"
-                  >
-                    <span
-                      className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
-                      aria-hidden="true"
-                    />
-                    <span className="font-medium">{skill}</span>
-                  </li>
-                ))}
-              </ul>
+              <StaggerList
+                className="mt-5"
+                itemSelector="[data-stagger-item]"
+                stagger={0.05}
+                delay={i * 40}
+              >
+                <ul className="space-y-3" role="list">
+                  {group.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      data-stagger-item
+                      className="flex items-center gap-3 text-foreground-secondary"
+                    >
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                        aria-hidden="true"
+                      />
+                      <span className="font-medium">{skill}</span>
+                    </li>
+                  ))}
+                </ul>
+              </StaggerList>
             </GlassCard>
           </Reveal>
         ))}
