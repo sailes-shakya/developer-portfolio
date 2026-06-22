@@ -1,25 +1,26 @@
-// @flow strict
-import { personalData } from "@/utils/data/personal-data";
+import { redirect } from "next/navigation";
+import { siteConfig } from "@/lib/data/site";
 
 async function getBlog(slug) {
-  const res = await fetch(`https://dev.to/api/articles/${personalData.devUsername}/${slug}`)
+  try {
+    const res = await fetch(
+      `https://dev.to/api/articles/${siteConfig.devUsername}/${slug}`,
+      { next: { revalidate: 3600 } }
+    );
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
+}
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+export default async function BlogDetails({ params }) {
+  const { slug } = await params;
+  const blog = await getBlog(slug);
+
+  if (blog?.url) {
+    redirect(blog.url);
   }
 
-  const data = await res.json();
-  return data;
-};
-
-async function BlogDetails({params}) {
-  const slug = params.slug;
-  const blog = await getBlog(slug);
- 
-  return (
-    <div>
-    </div>
-  );
-};
-
-export default BlogDetails;
+  redirect(`https://dev.to/${siteConfig.devUsername}`);
+}

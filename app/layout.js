@@ -1,33 +1,47 @@
-import { GoogleTagManager } from "@next/third-parties/google";
-import { Inter } from "next/font/google";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Footer from "./components/footer";
-import Navbar from "./components/navbar";
-import "./css/card.scss";
-import "./css/globals.scss";
-import ScrollToTop from "./components/helper/scroll-to-top";
-const inter = Inter({ subsets: ["latin"] });
+import { Plus_Jakarta_Sans } from "next/font/google";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import AmbientBackground from "@/components/ui/AmbientBackground";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { buildRootMetadata, buildStructuredData } from "@/lib/seo";
+import "./globals.css";
 
-export const metadata = {
-  title: "Portfolio of Sailesh Shakya - Software Developer",
-  description:
-    "This is the portfolio of Sailesh Shakya. I am a full stack developer and a self taught developer. I love to learn new things and I am always open to collaborating with others. I am a quick learner and I am always looking for new challenges.",
-};
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+export const metadata = buildRootMetadata();
 
 export default function RootLayout({ children }) {
+  const structuredData = buildStructuredData();
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ToastContainer />
-        <main className="min-h-screen relative mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var x=t||(d?'dark':'light');document.documentElement.setAttribute('data-theme',x);}catch(e){}})();`,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
+      <body className={`${jakarta.variable} font-sans`}>
+        <ThemeProvider>
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+          <AmbientBackground />
           <Navbar />
-          {children}
-          <ScrollToTop />
-        </main>
-        <Footer />
+          <main id="main-content">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
     </html>
   );
 }

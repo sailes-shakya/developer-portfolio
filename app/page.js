@@ -1,37 +1,48 @@
-import { personalData } from "@/utils/data/personal-data";
-import AboutSection from "./components/homepage/about";
-import Blog from "./components/homepage/blog";
-import ContactSection from "./components/homepage/contact";
-import Education from "./components/homepage/education";
-import Experience from "./components/homepage/experience";
-import HeroSection from "./components/homepage/hero-section";
-import Projects from "./components/homepage/projects";
-import Skills from "./components/homepage/skills";
-import xml2js from 'xml2js';
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
+import Skills from "@/components/sections/Skills";
+import Experience from "@/components/sections/Experience";
+import Testimonials from "@/components/sections/Testimonials";
+import Blog from "@/components/sections/Blog";
+import OpenSource from "@/components/sections/OpenSource";
+import Resume from "@/components/sections/Resume";
+import { getDevToPosts } from "@/lib/blog";
+import { seoConfig } from "@/lib/seo";
+import { siteConfig } from "@/lib/data/site";
 
-async function getData() {
-  const res = await fetch(`https://medium.com/feed/@sailesshakya`)
-  const data = await res.text();
-  const parser = new xml2js.Parser();
-  const parsedData = await parser.parseStringPromise(data);
-  console.log(parsedData);
-  return parsedData;
-
+export const metadata = {
+  title: `${siteConfig.name} | ${seoConfig.jobTitle} — ${seoConfig.roleFocus}`,
+  description: seoConfig.longDescription,
+  alternates: {
+    canonical: seoConfig.siteUrl,
+  },
+  openGraph: {
+    title: `${siteConfig.name} | ${seoConfig.jobTitle}`,
+    description: seoConfig.longDescription,
+    url: seoConfig.siteUrl,
+    type: "profile",
+  },
 };
 
 export default async function Home() {
-  const blogs = await getData();
+  const posts = await getDevToPosts(6);
 
   return (
     <>
-      <HeroSection />
-      <AboutSection />
-      <Experience />
-      <Skills />
+      <h1 className="sr-only">
+        {siteConfig.name} — {seoConfig.jobTitle} and {seoConfig.roleFocus} from{" "}
+        {siteConfig.location}
+      </h1>
+      <Hero />
+      <About />
       <Projects />
-     {/* // <Education /> */}
-      <Blog blogs={blogs} />
-      <ContactSection />
+      <Skills />
+      <Experience />
+      <Testimonials />
+      <Blog posts={posts} />
+      <OpenSource />
+      <Resume />
     </>
-  )
-};
+  );
+}

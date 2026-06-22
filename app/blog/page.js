@@ -1,44 +1,33 @@
-// @flow strict
+import { redirect } from "next/navigation";
+import Blog from "@/components/sections/Blog";
+import { getDevToPosts } from "@/lib/blog";
+import { absoluteUrl, seoConfig } from "@/lib/seo";
+import { siteConfig } from "@/lib/data/site";
 
-import { personalData } from "@/utils/data/personal-data";
-import BlogCard from "../components/homepage/blog/blog-card";
+export const metadata = {
+  title: "Blog — Mobile Development & Engineering",
+  description: `Read articles by ${siteConfig.name} on Flutter, React Native, mobile architecture, and lessons from production apps.`,
+  alternates: {
+    canonical: absoluteUrl("/blog"),
+  },
+  openGraph: {
+    title: `Blog | ${siteConfig.name}`,
+    description: `Technical writing on mobile development by ${siteConfig.name}.`,
+    url: absoluteUrl("/blog"),
+    type: "website",
+  },
+};
 
-async function getBlogs() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+export default async function BlogPage() {
+  const posts = await getDevToPosts(24);
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+  if (posts.length === 0) {
+    redirect(`https://dev.to/${siteConfig.devUsername}`);
   }
 
-  const data = await res.json();
-  return data;
-};
-
-async function page() {
-  const blogs = await getBlogs();
-
   return (
-    <div className="py-8">
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex  items-center">
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-          <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-2xl rounded-md">
-            All Blog
-          </span>
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
-        {
-          blogs.map((blog, i) => (
-            blog?.cover_image &&
-            <BlogCard blog={blog} key={i} />
-          ))
-        }
-      </div>
+    <div className="pt-20">
+      <Blog posts={posts} />
     </div>
   );
-};
-
-export default page;
+}
