@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/data/site";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const social = [
   { href: siteConfig.social.github, label: "GitHub", icon: FaGithub },
   { href: siteConfig.social.linkedin, label: "LinkedIn", icon: FaLinkedin },
-  { href: siteConfig.social.twitter, label: "Twitter", icon: FaTwitter },
 ];
 
 export default function Footer() {
